@@ -21,6 +21,9 @@
 	<p align="center">
 		<font face="Arial" size="4"><u>Médiathèque de POLYTECH </u></font>
 	</p>
+
+	<p>Hola</p>
+
 	<p align="center">
 		<font color="#004080" face="Arial" size="4">Gestion de
 			l'exposition 2016</font>
