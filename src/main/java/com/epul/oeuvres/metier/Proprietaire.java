@@ -2,8 +2,6 @@ package com.epul.oeuvres.metier;
 
 import java.io.Serializable;
 
-import java.util.List;
-
 
 /**
  * The persistent class for the proprietaire database table.
@@ -49,6 +47,10 @@ public class Proprietaire implements Serializable {
 
 	public void setPrenomProprietaire(String prenomProprietaire) {
 		this.prenomProprietaire = prenomProprietaire;
+	}
+
+	public String getNomComplet() {
+		return this.getPrenomProprietaire() + " " + this.getNomProprietaire();
 	}
 
 }
