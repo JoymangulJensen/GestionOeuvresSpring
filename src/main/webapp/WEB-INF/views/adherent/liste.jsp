@@ -36,11 +36,11 @@
 				<td>${item.prenomAdherent}</td>
 				<td>${item.villeAdherent}</td>
 				<td>
-					<a href="edit&idAdherent=${item.idAdherent}"
+					<a href="edit?idAdherent=${item.idAdherent}"
 					   class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></a>
 				</td>
 				<td>
-					<a href="delete&idAdherent=${item.idAdherent}"
+					<a href="delete?idAdherent=${item.idAdherent}"
 					   class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
 				</td>
 			</tr>

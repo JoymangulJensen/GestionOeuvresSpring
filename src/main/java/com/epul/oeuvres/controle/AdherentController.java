@@ -31,7 +31,7 @@ public class AdherentController  {
         return new ModelAndView("adherent/liste");
     }
 
-    @RequestMapping(value = "edit", method = RequestMethod.GET)
+    @RequestMapping(value = "edit")
     public ModelAndView editAction(HttpServletRequest request, HttpServletResponse response) {
         int idAdherent = Integer.parseInt(request.getParameter("idAdherent"));
         Adherent adherent = adherentDAO.find(idAdherent);
