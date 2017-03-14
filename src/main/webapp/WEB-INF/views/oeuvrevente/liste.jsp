@@ -28,7 +28,7 @@
         <h1>
             Catalogue des oeuvres
             <br>
-            <a class="btn btn-info" href="OeuvreventeController?action=add">
+            <a class="btn btn-info" href="add">
                 <span class="glyphicon glyphicon-plus"></span> Ajout d'une nouvelle Oeuvre
             </a>
         </h1>
@@ -57,11 +57,11 @@
                         <td>
                             <a href="#reservationModal" data-toggle="modal" data-id="${oeuvrevente.idOeuvrevente}"
                                class="btn btn-info" role="button"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                            <a href="OeuvreventeController?action=detail&id=${oeuvrevente.idOeuvrevente}"
+                            <a href="detail?id=${oeuvrevente.idOeuvrevente}"
                                class="btn btn-warning" role="button"><span class="glyphicon glyphicon-eye-open"></span></a>
-                            <a href="OeuvreventeController?action=editer&idOeuvrevente=${oeuvrevente.idOeuvrevente}"
+                            <a href="editer?idOeuvrevente=${oeuvrevente.idOeuvrevente}"
                                class="btn btn-success" role="button"><span class="glyphicon glyphicon-pencil"></span></a>
-                            <a href="OeuvreventeController?action=delete&id=${oeuvrevente.idOeuvrevente}"
+                            <a href="delete?id=${oeuvrevente.idOeuvrevente}"
                                class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span></a>
                         </td>
                     </tr>
@@ -72,7 +72,7 @@
         <div class="container">
             <!-- Modal -->
             <div class="modal fade" id="reservationModal" role="dialog">
-                <form class="form-horizontal" action="OeuvreventeController?action=liste" method="post">
+                <form class="form-horizontal" action="liste" method="post">
                 <div class="modal-dialog">
 
                     <!-- Modal content-->
