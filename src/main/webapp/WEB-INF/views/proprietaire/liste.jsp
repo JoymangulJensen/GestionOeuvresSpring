@@ -20,7 +20,7 @@
     });
 </script>
 
-    <h1>Tableau des Propriétaires ! <a class="btn btn-success" href="ProprietaireController?action=add" role="button">Ajouter un propriétaire</a></h1>
+    <h1>Tableau des Propriétaires ! <a class="btn btn-success" href="add" role="button">Ajouter un propriétaire</a></h1>
     <div class="flashMessages">${flashMessages}</div>
     <table id="tablePropriétaires">
         <thead>
@@ -38,9 +38,9 @@
                 <td>${item.prenomProprietaire}</td>
                 <!-- Modifier button -->
                 <td>
-                    <a href="ProprietaireController?action=edit&idProprietaire=${item.idProprietaire}"
+                    <a href="editer?idProprietaire=${item.idProprietaire}"
                        class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></a>
-                    <a href="ProprietaireController?action=delete&idProprietaire=${item.idProprietaire}"
+                    <a href="delete?idProprietaire=${item.idProprietaire}"
                        class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
                 </td>
             </tr>
