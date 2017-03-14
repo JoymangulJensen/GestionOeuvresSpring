@@ -19,6 +19,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
+import static java.lang.Integer.valueOf;
 
 /**
  * Created by Gaetan on 25/02/2017.
@@ -45,18 +46,18 @@ public class OeuvreventeController {
         List<Adherent> adherents = new AdherentDAO().findAll();
         request.setAttribute("oeuvreventes", oeuvreventes);
         request.setAttribute("adherents", adherents);
-        System.out.println("je passe par la");
         return new ModelAndView("oeuvrevente/liste");
     }
 
     @RequestMapping(value = "add")
     public ModelAndView addAction(HttpServletRequest request, HttpServletResponse response) {
         String titre;
-        Integer prix, idProprietaire;
+        Integer idProprietaire;
+        float prix;
         titre = request.getParameter("txttitre");
         if(titre != null && request.getParameter("numberprix")!=null && request.getParameter("idProprietaire")!=null){
             //Si le formulaire est valide
-            prix = Integer.parseInt(request.getParameter("numberprix"));
+            prix = Float.parseFloat(request.getParameter("numberprix"));
             idProprietaire = Integer.parseInt(request.getParameter("idProprietaire"));
             Oeuvrevente oeuvrevente = new Oeuvrevente();
             oeuvrevente.setEtatOeuvrevente("L");
@@ -69,7 +70,11 @@ public class OeuvreventeController {
             oeuvreventeDAO.insert(oeuvrevente);
             //this.clearFlashMessages();
             //this.addFlashMessages(new FlashMessage("Ajout d'une oeuvre", FlashMessageStatut.SUCCESS));
-            this.listeAction(request, response);
+            List<Oeuvrevente> oeuvreventes = this.oeuvreventeDAO.findAll();
+            List<Adherent> adherents = new AdherentDAO().findAll();
+            request.setAttribute("oeuvreventes", oeuvreventes);
+            request.setAttribute("adherents", adherents);
+            return new ModelAndView("oeuvrevente/liste");
         }
 
         request.setAttribute("proprietaires", new ProprietaireDAO().findAll());
@@ -78,15 +83,16 @@ public class OeuvreventeController {
 
     }
 
-    @RequestMapping(value = "editer", method = RequestMethod.GET)
+    @RequestMapping(value = "editer")
     public ModelAndView editerAction(HttpServletRequest request, HttpServletResponse response) {
-        int idOeuvrevente = parseInt(request.getParameter("idOeuvrevente"));
+        int idOeuvrevente = Integer.parseInt(request.getParameter("idOeuvrevente"));
         Oeuvrevente oeuvrevente = oeuvreventeDAO.find(idOeuvrevente);
         String titre;
-        Integer prix, idProprietaire;
+        Integer idProprietaire;
+        float prix;
         titre = request.getParameter("txttitre");
         if(titre != null && request.getParameter("numberprix")!=null && request.getParameter("idProprietaire")!=null){
-            prix = Integer.parseInt(request.getParameter("numberprix"));
+            prix = Float.parseFloat(request.getParameter("numberprix"));
             idProprietaire = Integer.parseInt(request.getParameter("idProprietaire"));
             oeuvrevente.setEtatOeuvrevente("L");
             oeuvrevente.setTitreOeuvrevente(titre);
@@ -98,15 +104,18 @@ public class OeuvreventeController {
             oeuvreventeDAO.insert(oeuvrevente);
             //this.clearFlashMessages();
             //this.addFlashMessages(new FlashMessage("Modification d'une oeuvre", FlashMessageStatut.SUCCESS));
-            this.listeAction(request, response);
-            return null;
+            List<Oeuvrevente> oeuvreventes = this.oeuvreventeDAO.findAll();
+            List<Adherent> adherents = new AdherentDAO().findAll();
+            request.setAttribute("oeuvreventes", oeuvreventes);
+            request.setAttribute("adherents", adherents);
+            return new ModelAndView("oeuvrevente/liste");
         }else{
             request.setAttribute("txttitre", oeuvrevente.getTitreOeuvrevente());
             request.setAttribute("txttitre", oeuvrevente.getTitreOeuvrevente());
             request.setAttribute("numberprix", oeuvrevente.getPrixOeuvrevente());
             request.setAttribute("idProprietaire", oeuvrevente.getProprietaire().getIdProprietaire());
             request.setAttribute("proprietaires", new ProprietaireDAO().findAll());
-
+            request.setAttribute("idOeuvrevente", idOeuvrevente);
             return new ModelAndView("oeuvrevente/editer");
         }
     }
@@ -136,7 +145,7 @@ public class OeuvreventeController {
 
     public FlashMessage reservationSubAction(HttpServletRequest request, HttpServletResponse response) {
         int idAdherent = parseInt(request.getParameter("idAdherent"));
-        int idOeuvrevente = parseInt(request.getParameter("idOeuvrevente"));
+        int idOeuvrevente = Integer.parseInt(request.getParameter("idOeuvrevente"));
         Adherent adherent = new AdherentDAO().find(idAdherent);
         Oeuvrevente oeuvrevente = this.oeuvreventeDAO.find(idOeuvrevente);
         Reservation reservation = new Reservation();

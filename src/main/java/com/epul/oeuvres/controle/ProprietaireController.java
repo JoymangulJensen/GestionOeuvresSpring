@@ -31,8 +31,8 @@ public class ProprietaireController {
     public ModelAndView editAction(HttpServletRequest request, HttpServletResponse response) {
         int idProprietaire = Integer.parseInt(request.getParameter("idProprietaire"));
         Proprietaire proprietaire = proprietaireDAO.find(idProprietaire);
-
         String nom, prenom;
+
         if ((nom = request.getParameter("txtnom")) != null && (prenom = request.getParameter("txtprenom")) != null) {
             proprietaire.setNomProprietaire(nom);
             proprietaire.setPrenomProprietaire(prenom);

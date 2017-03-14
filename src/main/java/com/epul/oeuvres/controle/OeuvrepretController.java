@@ -69,10 +69,9 @@ public class OeuvrepretController  {
         Oeuvrepret oeuvrepret = oeuvrepretDAO.find(idOeuvrepret);
         request.setAttribute("idOeuvrepret", idOeuvrepret);
         String titre;
-        Integer prix, idProprietaire;
+        Integer idProprietaire;
         titre = request.getParameter("txttitre");
-        if(titre != null && request.getParameter("numberprix")!=null && request.getParameter("idProprietaire")!=null){
-            prix = Integer.parseInt(request.getParameter("numberprix"));
+        if(titre != null && request.getParameter("idProprietaire")!=null){
             idProprietaire = Integer.parseInt(request.getParameter("idProprietaire"));
             oeuvrepret.setTitreOeuvrepret(titre);
             ProprietaireDAO proprietaireDAO = new ProprietaireDAO();

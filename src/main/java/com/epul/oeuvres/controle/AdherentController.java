@@ -33,6 +33,7 @@ public class AdherentController  {
 
     @RequestMapping(value = "edit")
     public ModelAndView editAction(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println(request.getParameter("idAdheren"));
         int idAdherent = Integer.parseInt(request.getParameter("idAdherent"));
         Adherent adherent = adherentDAO.find(idAdherent);
         String nom, prenom, ville;

@@ -10,7 +10,7 @@
     <jsp:param name="titre" value="Edition d'un propriétaire"/>
 </jsp:include>
     <h2>Modifier un propriétaire</h2>
-    <form class="form-horizontal"  method="post" action="edit">
+    <form class="form-horizontal"  method="post" action="editer">
         <div class="form-group">
             <div class="col-sm-10">
                 <input type="hidden" class="form-control" name="idProprietaire" id="idProprietaire" value="${owner.idProprietaire}" readonly>

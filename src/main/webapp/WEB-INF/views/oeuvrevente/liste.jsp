@@ -82,17 +82,21 @@
                             <h4 class="modal-title">Réservation d'une oeuvre destinée à la vente</h4>
                         </div>
                         <div class="modal-body container">
+                            <div class="form-group">
+                                <label></label>
                                 <input type="hidden" id="idOeuvrevente" name="idOeuvrevente" value=""/>
-                                <div class="form-group">
-                                    <label class="col-sm-2" for="idAdherent">Sélectionner l'adhérent</label>
-                                    <div class="col-sm-10">
-                                        <select id="idAdherent" name="idAdherent">
-                                            <c:forEach items="${adherents}" var="adherent">
-                                                <option value="${adherent.idAdherent}">${adherent.nomComplet}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2" for="idAdherent">Sélectionner l'adhérent</label>
+                                <div class="col-sm-10">
+                                    <select id="idAdherent" name="idAdherent">
+                                        <c:forEach items="${adherents}" var="adherent">
+                                            <option value="${adherent.idAdherent}">${adherent.nomComplet}</option>
+                                        </c:forEach>
+                                    </select>
                                 </div>
+                            </div>
 
                         </div>
                         <div class="modal-footer">

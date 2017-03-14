@@ -23,7 +23,7 @@
 </script>
 
     <h1>Edition d'une oeuvre</h1>
-    <form class="form-horizontal" name='identification' method="post" action="editer">
+    <form class="form-horizontal" name='identification' method="post" action="editer?idOeuvrevente=${idOeuvrevente}">
         <div class="form-group">
             <label class="control-label col-sm-2">Titre de l'oeuvre :</label>
             <div class="col-sm-10">
@@ -33,7 +33,7 @@
         <div class="form-group">
             <label class="control-label col-sm-2">Prix de l'oeuvre :</label>
             <div class="col-sm-10">
-                <input type="number" class="form-control" name="numberprix" id="numberprix" value="${numberprix}" required>
+                <input type="number" class="form-control" name="numberprix" id="numberprix" value="${numberprix}" min="0" required>
             </div>
         </div>
         <div class="form-group">
