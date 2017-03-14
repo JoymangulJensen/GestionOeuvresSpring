@@ -23,7 +23,7 @@
 </script>
 
     <h1>Edition d'une oeuvre</h1>
-    <form class="form-horizontal" name='identification' method="post" action="OeuvreventeController?action=add">
+    <form class="form-horizontal" name='identification' method="post" action="editer">
         <div class="form-group">
             <label class="control-label col-sm-2">Titre de l'oeuvre :</label>
             <div class="col-sm-10">
