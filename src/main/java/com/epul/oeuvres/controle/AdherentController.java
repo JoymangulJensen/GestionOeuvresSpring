@@ -2,6 +2,7 @@ package com.epul.oeuvres.controle;
 
 import com.epul.oeuvres.dao.AdherentDAO;
 import com.epul.oeuvres.metier.Adherent;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,7 +14,8 @@ import javax.servlet.http.HttpServletResponse;
  * Created by Jensen on 07/03/2017.
  *
  */
-@RequestMapping("adherent")
+@RequestMapping("adherent/")
+@Controller
 public class AdherentController  {
     private final AdherentDAO adherentDAO;
 
@@ -22,7 +24,7 @@ public class AdherentController  {
         this.adherentDAO = new AdherentDAO();
     }
 
-    @RequestMapping(value = "/liste", method = RequestMethod.GET)
+    @RequestMapping(value = "liste", method = RequestMethod.GET)
     public ModelAndView liste(HttpServletRequest request, HttpServletResponse response) {
         System.out.println(("here"));
         request.setAttribute("mesAdherents", adherentDAO.findAll());
@@ -50,6 +52,7 @@ public class AdherentController  {
     }
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public ModelAndView add(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("je passe par la");
         Adherent adherent = new Adherent();
         String nom, prenom, ville;
         if ((nom = request.getParameter("txtnom")) != null

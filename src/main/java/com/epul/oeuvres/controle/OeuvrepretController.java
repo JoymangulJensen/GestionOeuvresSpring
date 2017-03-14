@@ -5,8 +5,10 @@ import com.epul.oeuvres.dao.*;
 import com.epul.oeuvres.metier.*;
 import com.epul.oeuvres.utilitaires.FlashMessage;
 import com.epul.oeuvres.utilitaires.FlashMessageStatut;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +22,8 @@ import static java.lang.Integer.parseInt;
  * Created by Matthieu on 25/02/2017.
  *
  */
-@RequestMapping("oeuvrepret")
+@Controller
+@RequestMapping("oeuvrepret/")
 public class OeuvrepretController  {
 
     private OeuvrepretDAO oeuvrepretDAO;
@@ -31,22 +34,86 @@ public class OeuvrepretController  {
     }
 
     @RequestMapping(value = "liste", method = RequestMethod.GET)
-    public ModelAndView liste(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView listeAction(HttpServletRequest request, HttpServletResponse response) {
         List<Oeuvrepret> oeuvreprets = this.oeuvrepretDAO.findAll();;
         request.setAttribute("oeuvreprets", oeuvreprets);
         return new ModelAndView("oeuvrepret/liste");
     }
 
-    public void detailAction() {
+    @RequestMapping(value = "detail", method = RequestMethod.GET)
+
+    public ModelAndView detailAction(HttpServletRequest request, HttpServletResponse response,
+                                     @RequestParam(value="idOeuvrepret") final String idOeuvrepretString) {
+
+        int idOeuvrepret = Integer.parseInt(idOeuvrepretString);
+        Oeuvrepret oeuvrepret = this.oeuvrepretDAO.find(idOeuvrepret);
+        request.setAttribute("oeuvrepret", oeuvrepret);
+        return new ModelAndView("oeuvrepret/detail");
     }
 
-    public void deleteAction() {
+    @RequestMapping(value = "delete")
+    public ModelAndView ModelAndView(HttpServletRequest request, HttpServletResponse response,
+                                     @RequestParam(value="idOeuvrepret") final String idOeuvrepretString) {
+        int idOeuvrepret = Integer.parseInt(idOeuvrepretString);
+        oeuvrepretDAO.delete(idOeuvrepret);
+        List<Oeuvrepret> oeuvreprets = this.oeuvrepretDAO.findAll();;
+        request.setAttribute("oeuvreprets", oeuvreprets);
+        return new ModelAndView("oeuvrepret/liste");
     }
 
-    public void editerAction() {
+    @RequestMapping(value = "editer")
+    public ModelAndView editerAction(HttpServletRequest request, HttpServletResponse response,
+                                     @RequestParam(value="idOeuvrepret") final String idOeuvrepretString) {
+
+        int idOeuvrepret = Integer.parseInt(idOeuvrepretString);
+        Oeuvrepret oeuvrepret = oeuvrepretDAO.find(idOeuvrepret);
+        request.setAttribute("idOeuvrepret", idOeuvrepret);
+        String titre;
+        Integer prix, idProprietaire;
+        titre = request.getParameter("txttitre");
+        if(titre != null && request.getParameter("numberprix")!=null && request.getParameter("idProprietaire")!=null){
+            prix = Integer.parseInt(request.getParameter("numberprix"));
+            idProprietaire = Integer.parseInt(request.getParameter("idProprietaire"));
+            oeuvrepret.setTitreOeuvrepret(titre);
+            ProprietaireDAO proprietaireDAO = new ProprietaireDAO();
+            Proprietaire proprietaire = proprietaireDAO.find(idProprietaire);
+            oeuvrepret.setProprietaire(proprietaire);
+            OeuvrepretDAO oeuvrepretDAO = new OeuvrepretDAO();
+            oeuvrepretDAO.insert(oeuvrepret);
+            List<Oeuvrepret> oeuvreprets = this.oeuvrepretDAO.findAll();;
+            request.setAttribute("oeuvreprets", oeuvreprets);
+            return new ModelAndView("oeuvrepret/liste");
+        }else{
+            request.setAttribute("txttitre", oeuvrepret.getTitreOeuvrepret());
+            request.setAttribute("idProprietaire", oeuvrepret.getProprietaire().getIdProprietaire());
+            request.setAttribute("proprietaires", new ProprietaireDAO().findAll());
+            return new ModelAndView("oeuvrepret/editer");
+        }
     }
 
-    public void addAction() {
+    @RequestMapping(value = "add")
+    public ModelAndView addAction(HttpServletRequest request, HttpServletResponse response) {
+        String titre;
+        Integer prix, idProprietaire;
+        titre = request.getParameter("txttitre");
+        titre = request.getParameter("txttitre");
+        if(titre != null && request.getParameter("idProprietaire")!=null){
+            //Si le formulaire est valide
+            idProprietaire = Integer.parseInt(request.getParameter("idProprietaire"));
+            Oeuvrepret oeuvrepret = new Oeuvrepret();
+            oeuvrepret.setTitreOeuvrepret(titre);
+            ProprietaireDAO proprietaireDAO = new ProprietaireDAO();
+            Proprietaire proprietaire = proprietaireDAO.find(idProprietaire);
+            oeuvrepret.setProprietaire(proprietaire);
+            OeuvrepretDAO oeuvrepretDAO = new OeuvrepretDAO();
+            oeuvrepretDAO.insert(oeuvrepret);
+            List<Oeuvrepret> oeuvreprets = this.oeuvrepretDAO.findAll();;
+            request.setAttribute("oeuvreprets", oeuvreprets);
+            return new ModelAndView("oeuvrepret/liste");
+        }
+
+        request.setAttribute("proprietaires", new ProprietaireDAO().findAll());
+        return new ModelAndView("oeuvrepret/add");
 
     }
 }

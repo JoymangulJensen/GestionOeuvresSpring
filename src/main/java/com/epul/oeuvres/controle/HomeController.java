@@ -8,12 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import com.epul.oeuvres.dao.Service;
-import com.epul.oeuvres.meserreurs.*;
-import com.epul.oeuvres.metier.*;
 
 ///
-/// Les méthode du contrôleur répondent à des sollicitations
+/// Les mï¿½thode du contrï¿½leur rï¿½pondent ï¿½ des sollicitations
 /// des pages JSP
 
 @Controller
@@ -22,7 +19,11 @@ public class HomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return new ModelAndView("index");
+		return new ModelAndView("home");
+	}
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public ModelAndView homeBis(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return new ModelAndView("home");
 	}
 
 }

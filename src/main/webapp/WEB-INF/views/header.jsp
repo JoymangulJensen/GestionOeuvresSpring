@@ -33,14 +33,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.jsp"><span class="glyphicon glyphicon-home"></span> Accueil</a>
+                    <a class="navbar-brand" href="/home"><span class="glyphicon glyphicon-home"></span> Accueil</a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-collapse-target">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown"><a href="adherent/liste">Adhérents</a></li>
-                        <li class="dropdown"><a href="proprietaire/liste">Propriétaires</a></li>
-                        <li class="dropdown"><a href="oeuvrevente/liste">Oeuvres ventes</a></li>
-                        <li class="dropdown"><a href="oeuvrepret/liste">Oeuvres prêts</a></li>
+                        <li class="dropdown"><a href="/adherent/liste">Adhérents</a></li>
+                        <li class="dropdown"><a href="/proprietaire/liste">Propriétaires</a></li>
+                        <li class="dropdown"><a href="/oeuvrevente/liste">Oeuvres ventes</a></li>
+                        <li class="dropdown"><a href="/oeuvrepret/liste">Oeuvres prêts</a></li>
                         <li class="dropdown"><a href="#" onclick="close_window();return false;">Quitter</a></li>
                     </ul>
                 </div>

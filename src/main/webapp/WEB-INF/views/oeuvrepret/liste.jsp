@@ -26,7 +26,7 @@
     <h1>
         Catalogue des oeuvres en prêt
         <br>
-        <a class="btn btn-info" href="OeuvrepretController?action=add">
+        <a class="btn btn-info" href="add">
             <span class="glyphicon glyphicon-plus"></span> Ajout d'une nouvelle Oeuvre
         </a>
     </h1>
@@ -47,11 +47,11 @@
                 <td>${oeuvrepret.titreOeuvrepret}</td>
                 <td>${oeuvrepret.proprietaire.nomComplet}</td>
                 <td>
-                    <a href="OeuvrepretController?action=detail&idOeuvrepret=${oeuvrepret.idOeuvrepret}"
+                    <a href="detail?idOeuvrepret=${oeuvrepret.idOeuvrepret}"
                        class="btn btn-warning" role="button"><span class="glyphicon glyphicon-eye-open"></span></a>
-                    <a href="OeuvrepretController?action=editer&idOeuvrepret=${oeuvrepret.idOeuvrepret}"
+                    <a href="editer?idOeuvrepret=${oeuvrepret.idOeuvrepret}"
                        class="btn btn-success" role="button"><span class="glyphicon glyphicon-pencil"></span></a>
-                    <a href="OeuvrepretController?action=delete&idOeuvrepret=${oeuvrepret.idOeuvrepret}"
+                    <a href="delete?idOeuvrepret=${oeuvrepret.idOeuvrepret}"
                        class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span></a>
                 </td>
             </tr>

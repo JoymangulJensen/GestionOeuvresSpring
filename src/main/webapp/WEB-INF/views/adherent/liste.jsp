@@ -14,7 +14,7 @@
 		});
 	</script>
 
-	<h2>Tableau des Adhérents ! <a class="btn btn-success" href="AdherentController?action=add" role="button">Ajouter un adherent</a></h2>
+	<h2>Tableau des Adhérents ! <a class="btn btn-success" href="add" role="button">Ajouter un adherent</a></h2>
 
 	<table id="tableAdherents">
 		<thead>
@@ -36,11 +36,11 @@
 				<td>${item.prenomAdherent}</td>
 				<td>${item.villeAdherent}</td>
 				<td>
-					<a href="AdherentController?action=edit&idAdherent=${item.idAdherent}"
+					<a href="edit&idAdherent=${item.idAdherent}"
 					   class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></a>
 				</td>
 				<td>
-					<a href="AdherentController?action=delete&idAdherent=${item.idAdherent}"
+					<a href="delete&idAdherent=${item.idAdherent}"
 					   class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
 				</td>
 			</tr>

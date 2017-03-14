@@ -1,44 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="refresh" content="0;URL=javascript:fermer();">
-<title>Expo : Médiathèque De POLYTECH</title>
-</head>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	 pageEncoding="UTF-8"%>
+<jsp:include page="header.jsp">
+	<jsp:param name="titre" value="Expo : Médiathèque De POLYTECH"/>
+</jsp:include>
 
 
-<script language="JavaScript">
-	function fermer() {
+	<h1>Médiathèque de POLYTECH ! </h1>
+	<h2>Gestion de l'exposition 2016</h2>
+	<h3>Sélectionnez la fonctionnalité voulue :</h3>
+	<div class="row">
+		<ul>
+			<li><a href="AdherentController?action=liste">Lister les adhérents</a></li>
+			<li><a href="ProprietaireController?action=liste">Lister les propriétaires</a></li>
+			<li><a href="OeuvreventeController?action=liste">Consulter le catalogue des Oeuvres à vendre</a></li>
+			<li><a href="OeuvrepretController?action=liste">Consulter le catalogue des Oeuvres à prêter</a></li>
+			<li><a href="#" onclick="close_window();return false;">Quitter</a></li>
+		</ul>
+	</div>
 
-	}
-</script>
-
-<body>
-	<p align="center"></p>
-	<p align="center">
-		<font face="Arial" size="4"><u>Médiathèque de POLYTECH </u></font>
-	</p>
-
-	<p>Hola</p>
-
-	<p align="center">
-		<font color="#004080" face="Arial" size="4">Gestion de
-			l'exposition 2016</font>
-	</p>
-	<p align="left">
-		<font color="#004080" face="Arial"><u>Sélectionnez la
-				fonctionnalité voulue:</u></font>
-	</p>
-	<ul>
-		<li><a href="ajouterAdherent.htm"><font
-				face="Arial">Ajout Adhérent</font></a></li>
-		<li><a href="listerAdherent.htm"><font
-				face="Arial">lister les adhérents</font></a><font face="Arial"> </font></li>
-		<li><a href="javascript:fermer()"><font face="Arial">Quitter</font></a><font
-			face="Arial"> </font></li>
-	</ul>
-</body>
-</html>
+<jsp:include page="footer.jsp">
+	<jsp:param name="titre" value="Expo : Médiathèque De POLYTECH"/>
+</jsp:include>

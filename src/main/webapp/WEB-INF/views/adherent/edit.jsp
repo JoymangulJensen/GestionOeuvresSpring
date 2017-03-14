@@ -10,7 +10,7 @@
         <jsp:param name="titre" value="Edition d'un adhérant"/>
     </jsp:include>
     <h2>Modifier un adherent</h2>
-    <form class="form-horizontal"  method="post" action="AdherentController?action=edit">
+    <form class="form-horizontal"  method="post" action="edit">
         <div class="form-group">
             <div class="col-sm-10">
                 <input type="hidden" class="form-control" name="idAdherent" id="id" value="${adherent.idAdherent}">

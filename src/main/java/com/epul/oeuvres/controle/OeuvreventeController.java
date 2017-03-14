@@ -7,6 +7,7 @@ import com.epul.oeuvres.metier.Proprietaire;
 import com.epul.oeuvres.metier.Reservation;
 import com.epul.oeuvres.utilitaires.FlashMessage;
 import com.epul.oeuvres.utilitaires.FlashMessageStatut;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +19,8 @@ import static java.lang.Integer.parseInt;
 /**
  * Created by Gaetan on 25/02/2017.
  */
-@RequestMapping("oeuvrevente")
+@Controller
+@RequestMapping("oeuvrevente/")
 public class OeuvreventeController {
 
     private OeuvreventeDAO oeuvreventeDAO;
