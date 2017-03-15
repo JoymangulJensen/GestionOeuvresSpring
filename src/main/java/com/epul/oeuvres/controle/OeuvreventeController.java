@@ -52,11 +52,12 @@ public class OeuvreventeController {
     @RequestMapping(value = "add")
     public ModelAndView addAction(HttpServletRequest request, HttpServletResponse response) {
         String titre;
-        Integer prix, idProprietaire;
+        Integer idProprietaire;
+        float prix;
         titre = request.getParameter("txttitre");
         if(titre != null && request.getParameter("numberprix")!=null && request.getParameter("idProprietaire")!=null){
             //Si le formulaire est valide
-            prix = Integer.parseInt(request.getParameter("numberprix"));
+            prix = Float.parseFloat(request.getParameter("numberprix"));
             idProprietaire = Integer.parseInt(request.getParameter("idProprietaire"));
             Oeuvrevente oeuvrevente = new Oeuvrevente();
             oeuvrevente.setEtatOeuvrevente("L");
@@ -78,15 +79,16 @@ public class OeuvreventeController {
 
     }
 
-    @RequestMapping(value = "editer", method = RequestMethod.GET)
+    @RequestMapping(value = "editer")
     public ModelAndView editerAction(HttpServletRequest request, HttpServletResponse response) {
         int idOeuvrevente = parseInt(request.getParameter("idOeuvrevente"));
         Oeuvrevente oeuvrevente = oeuvreventeDAO.find(idOeuvrevente);
         String titre;
-        Integer prix, idProprietaire;
+        Integer idProprietaire;
+        float prix;
         titre = request.getParameter("txttitre");
         if(titre != null && request.getParameter("numberprix")!=null && request.getParameter("idProprietaire")!=null){
-            prix = Integer.parseInt(request.getParameter("numberprix"));
+            prix = Float.parseFloat(request.getParameter("numberprix"));
             idProprietaire = Integer.parseInt(request.getParameter("idProprietaire"));
             oeuvrevente.setEtatOeuvrevente("L");
             oeuvrevente.setTitreOeuvrevente(titre);
@@ -95,18 +97,17 @@ public class OeuvreventeController {
             Proprietaire proprietaire = proprietaireDAO.find(idProprietaire);
             oeuvrevente.setProprietaire(proprietaire);
             OeuvreventeDAO oeuvreventeDAO = new OeuvreventeDAO();
-            oeuvreventeDAO.insert(oeuvrevente);
+            oeuvreventeDAO.updateOeuvrevente(oeuvrevente);
             //this.clearFlashMessages();
             //this.addFlashMessages(new FlashMessage("Modification d'une oeuvre", FlashMessageStatut.SUCCESS));
-            this.listeAction(request, response);
-            return null;
+            return this.listeAction(request, response);
         }else{
             request.setAttribute("txttitre", oeuvrevente.getTitreOeuvrevente());
             request.setAttribute("txttitre", oeuvrevente.getTitreOeuvrevente());
             request.setAttribute("numberprix", oeuvrevente.getPrixOeuvrevente());
             request.setAttribute("idProprietaire", oeuvrevente.getProprietaire().getIdProprietaire());
             request.setAttribute("proprietaires", new ProprietaireDAO().findAll());
-
+            request.setAttribute("idOeuvrevente", idOeuvrevente);
             return new ModelAndView("oeuvrevente/editer");
         }
     }

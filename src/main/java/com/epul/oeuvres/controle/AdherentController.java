@@ -51,7 +51,7 @@ public class AdherentController  {
         }
 
     }
-    @RequestMapping(value = "add", method = RequestMethod.GET)
+    @RequestMapping(value = "add")
     public ModelAndView add(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("je passe par la");
         Adherent adherent = new Adherent();

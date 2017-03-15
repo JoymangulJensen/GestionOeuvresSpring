@@ -62,10 +62,8 @@ public class OeuvrepretController  {
     }
 
     @RequestMapping(value = "editer")
-    public ModelAndView editerAction(HttpServletRequest request, HttpServletResponse response,
-                                     @RequestParam(value="idOeuvrepret") final String idOeuvrepretString) {
-
-        int idOeuvrepret = Integer.parseInt(idOeuvrepretString);
+    public ModelAndView editerAction(HttpServletRequest request, HttpServletResponse response) {
+        int idOeuvrepret = parseInt(request.getParameter("idOeuvrepret"));
         Oeuvrepret oeuvrepret = oeuvrepretDAO.find(idOeuvrepret);
         request.setAttribute("idOeuvrepret", idOeuvrepret);
         String titre;
@@ -77,11 +75,8 @@ public class OeuvrepretController  {
             ProprietaireDAO proprietaireDAO = new ProprietaireDAO();
             Proprietaire proprietaire = proprietaireDAO.find(idProprietaire);
             oeuvrepret.setProprietaire(proprietaire);
-            OeuvrepretDAO oeuvrepretDAO = new OeuvrepretDAO();
-            oeuvrepretDAO.insert(oeuvrepret);
-            List<Oeuvrepret> oeuvreprets = this.oeuvrepretDAO.findAll();;
-            request.setAttribute("oeuvreprets", oeuvreprets);
-            return new ModelAndView("oeuvrepret/liste");
+            oeuvrepretDAO.updateOeuvrepret(oeuvrepret);
+            return this.listeAction(request, response);
         }else{
             request.setAttribute("txttitre", oeuvrepret.getTitreOeuvrepret());
             request.setAttribute("idProprietaire", oeuvrepret.getProprietaire().getIdProprietaire());
