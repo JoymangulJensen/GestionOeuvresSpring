@@ -69,7 +69,7 @@ public class OeuvreventeController {
             oeuvreventeDAO.insert(oeuvrevente);
             //this.clearFlashMessages();
             //this.addFlashMessages(new FlashMessage("Ajout d'une oeuvre", FlashMessageStatut.SUCCESS));
-            this.listeAction(request, response);
+            return this.listeAction(request, response);
         }
 
         request.setAttribute("proprietaires", new ProprietaireDAO().findAll());
@@ -139,6 +139,8 @@ public class OeuvreventeController {
         int idOeuvrevente = parseInt(request.getParameter("idOeuvrevente"));
         Adherent adherent = new AdherentDAO().find(idAdherent);
         Oeuvrevente oeuvrevente = this.oeuvreventeDAO.find(idOeuvrevente);
+        oeuvrevente.setEtatOeuvrevente("R");
+        this.oeuvreventeDAO.updateOeuvrevente(oeuvrevente);
         Reservation reservation = new Reservation();
         reservation.setAdherent(adherent);
         reservation.setDate(new java.sql.Date(Calendar.getInstance().getTime().getTime()));

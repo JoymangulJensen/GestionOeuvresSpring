@@ -55,8 +55,13 @@
                         <td>${oeuvrevente.proprietaire.nomComplet}</td>
                         <!-- Modifier button -->
                         <td>
-                            <a href="#reservationModal" data-toggle="modal" data-id="${oeuvrevente.idOeuvrevente}"
-                               class="btn btn-info" role="button"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+                            <c:if test="${oeuvrevente.etatOeuvrevente == 'L'}">
+                                <a href="#reservationModal" data-toggle="modal" data-id="${oeuvrevente.idOeuvrevente}"
+                                   class="btn btn-info" role="button"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+                            </c:if>
+                            <c:if test="${oeuvrevente.etatOeuvrevente != 'L'}">
+                                <a href="#" class="disabled btn btn-info" role="button"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+                            </c:if>
                             <a href="detail?id=${oeuvrevente.idOeuvrevente}"
                                class="btn btn-warning" role="button"><span class="glyphicon glyphicon-eye-open"></span></a>
                             <a href="editer?idOeuvrevente=${oeuvrevente.idOeuvrevente}"
